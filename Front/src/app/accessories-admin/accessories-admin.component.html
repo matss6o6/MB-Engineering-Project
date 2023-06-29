@@ -1,0 +1,190 @@
+<nav class="navbar navbar-dark navbar-expand-md bg-primary">
+  <button
+    type="button"
+    align="center"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarNav"
+    class="navbar-toggler"
+    aria-controls="navbarNav"
+    arian-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse col-sm-justify-content-center" id="navbarNav" >
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link active" routerLink="/home-log-admin">Strona główna</a>
+      </li>
+      <li  ngbDropdown class="nav-item dropdown">
+        <a  ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+          Kategorie </a>
+        <div ngbDropdownMenu aria-labelledby="navbarDropdownMenuLink">
+          <a ngbDropdownItem routerLink="/pc-laptop-admin">Komputery/Laptopy></a>
+          <a ngbDropdownItem routerLink="/computer-components-admin">Podzespoły komputerowe></a>
+          <a ngbDropdownItem routerLink="/accessories-admin">Akcesoria></a>
+        </div>
+      </li>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item ">
+          <a class="nav-link"  (click)="onOpenModale(null, 'add')" >Dodaj Akcesoria <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+    </ul>
+
+  </div>
+
+  <form class="form-inline my-2 my-lg-0">
+    <input type="search" (ngModelChange)="searchAccessories(key.value)" #key="ngModel" ngModel
+           name="key" id="searchName" class="form-control mr-sm-2" placeholder="Szukaj akcesoria..." required>
+  </form>
+
+  <button type="button " routerLink="/userlist" class="btn btn-primary ml-2">
+    <img src="/assets/images/editusers.png" >
+  </button>
+  <button type="button " routerLink="/orders" class="btn btn-primary ml-2">
+    <img src="/assets/images/listorder.png" >
+  </button>
+  <button type="button " routerLink="/login" class="btn btn-primary ml-2">
+    <img src="/assets/images/logout.png" > Wyloguj się
+  </button>
+</nav>
+
+<div class="container" id="main-container">
+  <p style="text-align: center; font-size:25px"><img src="assets/images/iconmouse.png" style="width:5% ; margin-top: 1% "><i><b> Akcesoria komputerowe</b> </i></p><hr>
+  <div class="row row-cols-1 row-cols-md-2">
+    <div *ngFor= "let accessories of accessoriess" class="col col-xl-5">
+
+      <div class="card m-b-30" class="anim">
+        <div class="card-body row">
+          <div class="col" >
+            <img src="{{accessories?.img}}" style="width:70%;"><br>
+          </div>
+          <div class="col">
+            <p id="prop">Model: <b> {{accessories?.typ}}</b><br>
+              Rodzaj <b>{{accessories?.marka}}</b><br>
+              Opis <b>{{accessories?.opis}}</b><br>
+            </p>
+            <p style="text-align:right; font-size:20px">{{accessories?.cena}} zł</p>
+            <a (click)="onOpenModal(accessories,'edit')" class="table-link text-info">
+                                            <span class="fa-stack">
+                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                            </span>
+            </a>
+            <a (click)="onOpenModal(accessories,'delete')" class="table-link danger">
+                                            <span class="fa-stack">
+                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                                            </span>
+            </a>
+
+        </div>
+        <hr>      </div>
+
+
+
+    </div>
+  </div>
+</div>
+
+<!-- Add Accessories Modal -->
+<div class="modal fade" id="addAccessoriesModal" tabindex="-1" role="dialog" aria-labelledby="addAccessoriesModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addAccessoriesModalLabel">Dodaj Akcesoria</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #addForm="ngForm" (ngSubmit)="onAddAccessories(addForm)">
+          <div class="form-group">
+            <label for="typ">Typ</label>
+            <input type="text" ngModel name="typ" class="form-control" id="typA" placeholder="Typ" required>
+          </div>
+          <div class="form-group">
+            <label for="marka">Marka</label>
+            <input type="email" ngModel name="marka" class="form-control" id="markaA" placeholder="Marka" required>
+          </div>
+          <div class="form-group">
+            <label for="opis">Opis</label>
+            <input type="text" ngModel name="opis" class="form-control" id="opisA" placeholder="Opis" required>
+          </div>
+          <div class="form-group">
+            <label for="cena">Cena</label>
+            <input type="text" ngModel name="cena" class="form-control" id="cenaA" placeholder="Cena" required>
+          </div>
+          <div class="form-group">
+            <label for="img">Image URL</label>
+            <input type="text" ngModel name="img" class="form-control" id="imgA" placeholder="Image URL" required>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="add-accessories-form" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+            <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Zapisz zmiany</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Accessories Modal -->
+<div class="modal fade" id="updateAccessoriesModal" tabindex="-1" role="dialog" aria-labelledby="updateAccessoriesModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateAccessoriesModalLabel"><H1>Edytuj Akcesoria</H1> {{editAccessories?.typ}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #editForm="ngForm">
+          <div class="form-group">
+            <label for="typ">Typ</label>
+            <input type="text" ngModel="{{editAccessories?.typ}}" name="typ" class="form-control" id="typ" aria-describedby="modelHelp" placeholder="Typ">
+          </div>
+          <input type="hidden" ngModel="{{editAccessories?.idAkcesoria}}" name="idAkcesoria" class="form-control" id="idAkcesoria" placeholder="idAkcesoria">
+          <input type="hidden" ngModel="{{editAccessories?.img}}" name="img" class="form-control" id="img" placeholder="img">
+          <input type="hidden" ngModel="{{editAccessories?.cena}}" name="cena" class="form-control" id="cena" name="cena" placeholder="Cena">
+          <div class="form-group">
+            <label for="marka">Marka</label>
+            <input type="text" ngModel="{{editAccessories?.marka}}" name="marka" class="form-control" id="marka" placeholder="Marka">
+          </div>
+          <div class="form-group">
+            <label for="opis">Opis</label>
+            <input type="text" ngModel="{{editAccessories?.opis}}" name="opis" class="form-control" id="opis" placeholder="Opis">
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Anuluj</button>
+            <button (click)="onUpdateAccessories(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Zapisz zmiany</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Accessories Modal -->
+<div class="modal fade" id="deleteAccessoriesModal" tabindex="-1" role="dialog" aria-labelledby="deleteAccessoriesModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteAccessoriesModalLabel">Usuń akcesoria</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Czy jesteś pewny , że chcesz usunąć akcesoria {{deleteAccessories?.typ}}?</p>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
+          <button (click)="onDeleteAccessories(deleteAccessories.idAkcesoria)" class="btn btn-danger" data-dismiss="modal">Tak</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

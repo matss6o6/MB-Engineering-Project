@@ -1,0 +1,103 @@
+<nav class="navbar navbar-dark navbar-expand-md bg-primary">
+  <button
+    type="button"
+    align="center"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarNav"
+    class="navbar-toggler"
+    aria-controls="navbarNav"
+    arian-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse col-sm-justify-content-center" id="navbarNav" >
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link active" routerLink="/home-log-user">Strona główna</a>
+      </li>
+      <li  ngbDropdown class="nav-item dropdown">
+        <a  ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+          Kategorie </a>
+        <div ngbDropdownMenu aria-labelledby="navbarDropdownMenuLink">
+          <a ngbDropdownItem routerLink="/pc-laptop">Komputery/Laptopy></a>
+          <a ngbDropdownItem routerLink="/computer-components">Podzespoły komputerowe></a>
+          <a ngbDropdownItem routerLink="/accessories">Akcesoria></a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " routerLink="/contact-log-user">Kontakt</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " routerLink="/about-log-user">O Nas</a>
+      </li>
+
+    </ul>
+  </div>
+
+  <button type="button " routerLink="/shopcart" class="btn btn-primary ml-2 active">
+    <img src="/assets/images/shopping_cart2.png" >
+  </button>
+  <button type="button " routerLink="/login" class="btn btn-primary ml-2">
+    <img src="/assets/images/logout.png" > Wyloguj się
+  </button>
+</nav>
+<div class="container">
+  <div class="row mt-3">
+    <mat-horizontal-stepper>
+      <mat-step label="Podaj dane do wysyłki">
+        <form>
+          <h2>Dane odbiorcy</h2>
+          <div class="form-floating mb-3 mt-6">
+            <input type="text" [(ngModel)]="nameandsurname" class="form-control" name="firstname" id="floatingInputname" placeholder="Name">
+            <label for="floatingInputname">Imie i Nazwisko lub nazwa firmy</label>
+          </div>
+          <div class="form-floating mb-3 mt-6">
+            <input type="text" [(ngModel)]="street" class="form-control" name="firstname" id="street" placeholder="Name">
+            <label for="street"> Ulica i numer</label>
+          </div>
+          <div class="form-floating mb-3 mt-6">
+            <input type="email" [(ngModel)]="email" class="form-control" name="firstname" id="floatingInputemail" placeholder="Name">
+            <label for="floatingInputemail">E-mail</label>
+          </div>
+          <div class="form-floating mb-3 mt-6">
+            <input type="tel" [(ngModel)]="phonenumber" class="form-control" name="phone" id="phone" placeholder="Name">
+            <label for="phone">Telefon</label>
+          </div>
+
+        </form>
+        <div style="text-align: right">
+          <button mat-button matStepperNext>Dalej <mat-icon>navigate_next</mat-icon></button>
+        </div>
+      </mat-step>
+<!--      <mat-step label="Sposób dostawy">-->
+<!--        <div class="container">-->
+<!--          <h2>Wybór sposobu dostawy</h2>-->
+<!--          <mat-radio-group aria-label="Select an option" style="font-size: 20px">-->
+<!--            <mat-radio-button value="1">Odbiór w salonie MatIT <mat-icon>account_balance</mat-icon></mat-radio-button> <br>-->
+<!--            <mat-radio-button  value="2">Kurier- InPost, UPS, FedEx <mat-icon> local_shipping</mat-icon></mat-radio-button>-->
+<!--          </mat-radio-group>-->
+<!--        </div>-->
+<!--        <div style="text-align: right">-->
+<!--          <button mat-button matStepperPrevious><mat-icon>navigate_before</mat-icon> Wróć</button>-->
+<!--          <button mat-button matStepperNext>Dalej<mat-icon>navigate_next</mat-icon></button>-->
+<!--        </div></mat-step>-->
+      <mat-step label="Płatność">
+        <div class="container">
+          <h2>Zakończ, klikając poniższy guzik:</h2>
+        </div>
+        <div class="row">
+
+          <div class="col" class="anim">
+            <a (click)="goToOdbior()">
+              <img src="assets/images/cash.png" style="width: 15%">
+              Płatność internetowa</a>
+          </div>
+        </div>
+        <div style="text-align: right">
+          <button mat-button matStepperPrevious><mat-icon>navigate_before</mat-icon> Wróć</button>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </div>
+</div>

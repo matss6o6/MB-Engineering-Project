@@ -1,0 +1,205 @@
+<nav class="navbar navbar-dark navbar-expand-md bg-primary">
+  <button
+    type="button"
+    align="center"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarNav"
+    class="navbar-toggler"
+    aria-controls="navbarNav"
+    arian-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse col-sm-justify-content-center" id="navbarNav" >
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link active" routerLink="/home-log-admin">Strona główna</a>
+      </li>
+      <li  ngbDropdown class="nav-item dropdown">
+        <a  ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+          Kategorie </a>
+        <div ngbDropdownMenu aria-labelledby="navbarDropdownMenuLink">
+          <a ngbDropdownItem routerLink="/pc-laptop-admin">Komputery/Laptopy></a>
+          <a ngbDropdownItem routerLink="/computer-components-admin">Podzespoły komputerowe></a>
+          <a ngbDropdownItem routerLink="/accessories-admin">Akcesoria></a>
+        </div>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link"  (click)="onOpenModale(null, 'add')" >Dodaj Ram <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+
+  </div>
+
+  <form class="form-inline my-2 my-lg-0">
+    <input type="search" (ngModelChange)="searchRams(key.value)" #key="ngModel" ngModel
+           name="key" id="searchName" class="form-control mr-sm-2" placeholder="Szukaj pamięci RAM..." required>
+  </form>
+  <button type="button " routerLink="/userlist" class="btn btn-primary ml-2">
+    <img src="/assets/images/editusers.png" >
+  </button>
+  <button type="button " routerLink="/orders" class="btn btn-primary ml-2">
+    <img src="/assets/images/listorder.png" >
+  </button>
+  <button type="button " routerLink="/login" class="btn btn-primary ml-2">
+    <img src="/assets/images/logout.png" > Wyloguj się
+  </button>
+</nav>
+
+<div class="container" id="main-container">
+  <p style="text-align: center; font-size:25px"><img src="assets/images/iconram.png" style="width:5% ; margin-top: 1% "><i><b> Pamięci RAM</b> </i></p><hr>
+  <div class="row row-cols-1 row-cols-md-2">
+    <div *ngFor= "let ram of rams" class="col col-xl-5">
+
+      <div class="card m-b-30" class="anim">
+        <div class="row row-cols-2">
+          <div class="col" >
+            <img src="{{ram?.img}}" style="width:70%;"><br>
+          </div>
+          <div class="col">
+            <p id="prop">Model: <b>{{ram?.model}}</b><br>
+              Pojemność skokowa: <b>{{ram?.pskokowa}}</b><br>
+              Rodzaj pamięci: <b>{{ram?.rpamieci}}</b><br>
+              Taktowanie: <b>{{ram?.taktowanie}}</b><br>
+              Opóźnienie: <b>{{ram?.opoznienie}} </b></p>
+            <p style="text-align:right; font-size:20px"> {{ram?.cena}} zł</p>
+            <a (click)="onOpenModal(ram, 'edit')" class="table-link text-info">
+                                            <span class="fa-stack">
+                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                            </span>
+            </a>
+            <a (click)="onOpenModal(ram, 'delete')" class="table-link danger">
+                                            <span class="fa-stack">
+                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                                            </span>
+            </a>
+          </div>
+
+        </div>
+        <hr>      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Add Ram Modal -->
+<div class="modal fade" id="addRamModal" tabindex="-1" role="dialog" aria-labelledby="addRamModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addRamModalLabel">Dodaj Ram</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #addForm="ngForm" (ngSubmit)="onAddRam(addForm)">
+          <div class="form-group">
+            <label for="model">Model</label>
+            <input type="text" ngModel name="model" class="form-control" id="modelA" placeholder="Model" required>
+          </div>
+          <div class="form-group">
+            <label for="pSkokowa">Pamiec skokowa</label>
+            <input type="text" ngModel name="pSkokowa" class="form-control" id="pSkokowaA" placeholder="pSkokowa" required>
+          </div>
+          <div class="form-group">
+            <label for="rPamieci">Rodzaj pamieci</label>
+            <input type="text" ngModel name="rPamieci" class="form-control" id="rPamieciA" placeholder="Rodzaj pamieci" required>
+          </div>
+          <div class="form-group">
+            <label for="taktowanie">Taktowanie</label>
+            <input type="text" ngModel name="taktowanie" class="form-control" id="taktowanieA" placeholder="Taktowanie " required>
+          </div>
+
+          <div class="form-group">
+            <label for="opoznienie">Opoznienie</label>
+            <input type="text" ngModel name="opoznienie" class="form-control" id="opoznienieA" placeholder="Opoznienie" required>
+          </div>
+          <div class="form-group">
+            <label for="cena">Cena</label>
+            <input type="text" ngModel name="cena" class="form-control" id="cenaA" placeholder="Cena" required>
+          </div>
+          <div class="form-group">
+            <label for="img">Image URL</label>
+            <input type="text" ngModel name="img" class="form-control" id="imgA" placeholder="Image URL" required>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="add-ram-form" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+            <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Zapisz zmiany</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Ram Modal -->
+<div class="modal fade" id="updateRamModal" tabindex="-1" role="dialog" aria-labelledby="updateRamModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateRamModalLabel"><H1>Edytuj Ram</H1> {{editRam?.model}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #editForm="ngForm">
+          <div class="form-group">
+            <label for="model">Model</label>
+            <input type="text" ngModel="{{editRam?.model}}" name="model" class="form-control" id="model" aria-describedby="modelHelp" placeholder="Model">
+          </div>
+          <input type="hidden" ngModel="{{editRam?.idPam}}" name="idPam" class="form-control" id="idPam" placeholder="idPam">
+          <input type="hidden" ngModel="{{editRam?.img}}" name="img" class="form-control" id="img" placeholder="img">
+          <div class="form-group">
+            <label for="pSkokowa">Pamiec Skokowa</label>
+            <input type="text" ngModel="{{editRam?.pskokowa}}" name="pSkokowa" class="form-control" id="pSkokowa" placeholder="Pamiec skokowa">
+          </div>
+          <div class="form-group">
+            <label for="rPamieci">Rodzaj pamieci</label>
+            <input type="text" ngModel="{{editRam?.rpamieci}}" name="rPamieci" class="form-control" id="rPamieci" placeholder="Rodzaj pamieci">
+          </div>
+          <div class="form-group">
+            <label for="taktowanie">Taktowanie</label>
+            <input type="text" ngModel="{{editRam?.taktowanie}}" name="taktowanie" class="form-control" id="taktowanie" name="taktowanie" placeholder="Taktowanie">
+          </div>
+          <div class="form-group">
+            <label for="opoznienie">Opoznienie</label>
+            <input type="text" ngModel="{{editRam?.opoznienie}}" name="opoznienie" class="form-control" id="opoznienie" name="opoznienie" placeholder="Opoznienie">
+          </div>
+          <div class="form-group">
+            <label for="cena">Cena</label>
+            <input type="text" ngModel="{{editRam?.cena}}" name="cena" class="form-control" id="cena" name="cena" placeholder="Cena">
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Anuluj</button>
+            <button (click)="onUpdateRam(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Zapisz zmiany</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Ram Modal -->
+<div class="modal fade" id="deleteRamModal" tabindex="-1" role="dialog" aria-labelledby="deleteRamModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteRamModalLabel">Usuń Ram</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Czy jesteś pewny , że chcesz usunąć ram {{deleteRam?.model}}?</p>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
+          <button (click)="onDeleteRam(deleteRam.idPam)" class="btn btn-danger" data-dismiss="modal">Tak</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

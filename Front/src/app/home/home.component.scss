@@ -1,0 +1,50 @@
+.btn{
+  border-radius:20px;
+}
+input{
+  border-radius:20px;
+}
+#promocja{
+  border:solid thick lightslategray;
+  border-radius:30px;
+}
+.prop{
+  font-size:12px;
+}
+#prom{
+  font-size:15px;
+}
+.col-md-4 p{
+  font-size:40px;
+}
+.anim{
+  border-radius:20px;
+  box-sizing: border-box;
+  transition: border 0.5s;
+}
+.anim:hover{
+  border: 2px solid lightslategray;
+}
+
+@media(max-width: 767px)
+{
+  #navbarNav{
+    vertical-align: center;
+    text-align: center;
+    font-size:30px;
+  }
+  #navbar{
+    vertical-align: center;
+    text-align: center;
+  }
+
+}
+@media(min-width:993px )
+{
+  #promocja{
+    font-size: 30px;
+  }
+}
+
+
+

@@ -1,0 +1,23 @@
+.btn{
+  border-radius:20px;
+}
+input{
+  border-radius:20px;
+}
+img{
+
+  border-radius:20px;
+}
+@media(max-width: 767px)
+{
+  #navbarNav{
+    vertical-align: center;
+    text-align: center;
+    font-size:30px;
+  }
+  #navbar{
+    vertical-align: center;
+    text-align: center;
+  }
+
+}

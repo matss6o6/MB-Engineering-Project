@@ -1,0 +1,62 @@
+<nav class="navbar navbar-dark navbar-expand-md bg-primary">
+  <button
+    type="button"
+    align="center"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarNav"
+    class="navbar-toggler"
+    aria-controls="navbarNav"
+    arian-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse col-sm-justify-content-center" id="navbarNav" >
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link active" routerLink="/home-log-admin">Strona główna</a>
+      </li>
+      <li  ngbDropdown class="nav-item dropdown">
+        <a  ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+          Kategorie </a>
+        <div ngbDropdownMenu aria-labelledby="navbarDropdownMenuLink">
+          <a ngbDropdownItem routerLink="/pc-laptop-admin">Komputery/Laptopy></a>
+          <a ngbDropdownItem routerLink="/computer-components-admin">Podzespoły komputerowe></a>
+          <a ngbDropdownItem routerLink="/accessories-admin">Akcesoria></a>
+        </div>
+      </li>
+    </ul>
+
+  </div>
+  <button type="button " routerLink="/userlist" class="btn btn-primary ml-2">
+    <img src="/assets/images/editusers.png" >
+  </button>
+  <button type="button " routerLink="/orders" class="btn btn-primary ml-2">
+    <img src="/assets/images/listorder.png" >
+  </button>
+  <button type="button " routerLink="/login" class="btn btn-primary ml-2">
+    <img src="/assets/images/logout.png" > Wyloguj się
+  </button>
+</nav>
+
+<div class="container">
+  <p style="text-align: center; font-size:25px"><img src="assets/images/comp.png"><i><b>  Podzespoły komputerowe</b> </i></p><hr>
+  <div class="row justify-content-evenly row-cols-1 row-cols-md-2">
+    <div class="col-5"  style="text-align: center" class="anim">
+      <a routerLink="/hard-disk-admin"><img src="assets/images/drivessd.png" style="width:50%"/>
+        <p><b>Dyski twarde HDD i SSD</b></p></a><hr>
+    </div>
+    <div class="col-5"  style="text-align: center" class="anim">
+      <a routerLink="/graphic-card-admin"><img src="assets/images/graphcard.png" style="width:50%"/><br>
+        <p style="text-align: center"><b>Karty graficzne</b></p></a><hr>
+    </div>
+    <div class="col-4" style="text-align: center" class="anim">
+      <a routerLink="/processors-admin"><img src="assets/images/amd.png" style="width:50%"/><br>
+        <p><b>Procesory</b></p></a><hr>
+    </div>
+    <div class="col-4"  style="text-align: center" class="anim">
+      <a routerLink="/memory-ram-admin"><img src="assets/images/ram.png" style="width:30%"/><br>
+        <p><b>Pamięci RAM</b></p></a><hr>
+    </div>
+  </div>
+</div>

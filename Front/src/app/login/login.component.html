@@ -1,0 +1,91 @@
+<nav class="navbar navbar-dark navbar-expand-md bg-primary">
+  <button
+    type="button"
+    align="center"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarNav"
+    class="navbar-toggler"
+    aria-controls="navbarNav"
+    arian-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse col-sm-justify-content-center" id="navbarNav" >
+
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/home">Strona główna</a>
+      </li>
+      <li class="nav-item dropdown" aria-labelledby="navbarDropdownMenuLink">
+        <a class="nav-link dropdown-toggle disabled" data-toggle="dropdown" >Kategorie
+          <span class="caret"></span></a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item"> Komputery/Laptopy></a>
+          <a class="dropdown-item"> Podzespoły komputerowe></a>
+          <a class="dropdown-item"> Akcesoria></a>
+        </div>
+      </li>
+      <li class="nav-item col-md-justify-content-center">
+        <a class="nav-link " routerLink="/contact">Kontakt</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " routerLink="/about">O Nas</a>
+      </li>
+
+    </ul>
+
+  </div>
+
+
+  <button type="button mr-2" routerLink="/login" class="btn btn-primary px-3 me-2 order-md-last order-sm-first active">
+    <img src="/assets/images/login.png" >Zaloguj się
+  </button>
+
+
+</nav>
+
+<div class="container-fluid">
+  <div class="row row-cols-1 row-cols-lg-2 mt-5">
+  <div class="col-7 col-lg-5 ml-5">
+
+    <h2> Zaloguj się</h2>
+    <br>
+    <form (ngSubmit)="userLogin()" class="was-validated">
+      <div class="was-validated form-floating mb-3 mt-6">
+        <input type="text" [(ngModel)]="user.login" class="form-control" id="userId" name="userId" required>
+        <label for="userId" class="form-label">Login</label>
+        <div class="invalid-feedback">
+          Podaj login.
+        </div>
+      </div>
+      <div class="was-validated form-floating mb-3 mt-6">
+        <input type="password" [(ngModel)]="user.haslo" class="form-control" id="password" name="password" required>
+        <label for="password" class="form-label">Hasło</label>
+        <div class="invalid-feedback">
+          Podaj hasło.
+        </div>
+      </div>
+      <a href="forgotpass"> Nie pamiętasz hasła?</a><br><br>
+      <div class="d-grid gap-1">
+        <button class="btn btn-primary" type="submin" >Zaloguj się</button>
+      </div>
+    </form>
+    </div>
+
+    <div class="col-lg-6">
+      <h2>Nie masz konta?</h2>
+      <div class="d-grid gap-1 col-7 col-lg-10 ml-5">
+        <button class="btn btn-outline-primary" type="button" routerLink="/register"> Zarejestruj się</button>
+      </div>
+      <div class="mt-4 ml-4" id="lg"><p>Dlaczego warto założyć u nas konto?</p></div>
+        <a><img src="/assets/images/order.png"/> Kupujesz o każdej porze</a><br>
+      <a><img src="/assets/images/sale.png" /> Jesteś na bieżąco z promocjami</a><br>
+      <a><img src="/assets/images/save.png"/> Nie potrzebujesz paragonu w razie reklamacji/zwrotów</a><br>
+      <a><img src="/assets/images/secure.png"/> Oferujemy bezpieczne zakupy!</a><br>
+      <a><img src="/assets/images/doortodoor.png"/> Specjalna gwarancja dla stałych klientów door-to-door</a><br>
+      <a><img src="/assets/images/contact.png"/> Masz problem? Napisz, uporamy się z nim szybko</a><br>
+    </div>
+
+  </div>
+</div>

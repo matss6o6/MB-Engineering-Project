@@ -1,0 +1,75 @@
+<nav class="navbar navbar-dark navbar-expand-md bg-primary">
+  <button
+    type="button"
+    align="center"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarNav"
+    class="navbar-toggler"
+    aria-controls="navbarNav"
+    arian-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse col-sm-justify-content-center" id="navbarNav" >
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link active" routerLink="/home-log-user">Strona główna</a>
+      </li>
+      <li  ngbDropdown class="nav-item dropdown">
+        <a  ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+          Kategorie </a>
+        <div ngbDropdownMenu aria-labelledby="navbarDropdownMenuLink">
+          <a ngbDropdownItem routerLink="/pc-laptop">Komputery/Laptopy></a>
+          <a ngbDropdownItem routerLink="/computer-components">Podzespoły komputerowe></a>
+          <a ngbDropdownItem routerLink="/accessories">Akcesoria></a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " routerLink="/contact-log-user">Kontakt</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " routerLink="/about-log-user">O Nas</a>
+      </li>
+
+    </ul>
+  </div>
+
+  <form class="form-inline my-2 my-lg-0">
+    <input type="search" (ngModelChange)="searchRams(key.value)" #key="ngModel" ngModel
+           name="key" id="searchName" class="form-control mr-sm-2" placeholder="Szukaj pamięci RAM..." required>
+  </form>
+
+  <button type="button " routerLink="/shopcart" class="btn btn-primary ml-2">
+    <img src="/assets/images/shopping_cart2.png" >
+  </button>
+  <button type="button " routerLink="/login" class="btn btn-primary ml-2">
+    <img src="/assets/images/logout.png" > Wyloguj się
+  </button>
+</nav>
+<div class="container">
+  <p style="text-align: center; font-size:25px"><img src="assets/images/iconram.png" style="width:5% ; margin-top: 1% "><i><b> Pamięci RAM</b> </i></p><hr>
+  <div class="row row-cols-1 row-cols-md-2">
+    <div *ngFor= "let ram of rams" class="col col-xl-5">
+
+      <div class="card m-b-30" class="anim">
+        <div class="row row-cols-2">
+          <div class="col" >
+            <img src="{{ram?.img}}" style="width:70%;"><br>
+          </div>
+          <div class="col">
+            <p id="prop">Model: <b>{{ram?.model}}</b><br>
+              Pojemność skokowa: <b>{{ram?.pskokowa}}</b><br>
+              Rodzaj pamięci: <b>{{ram?.rpamieci}}</b><br>
+              Taktowanie: <b>{{ram?.taktowanie}}</b><br>
+              Opóźnienie: <b>{{ram?.opoznienie}} </b></p>
+            <p style="text-align:right; font-size:20px"> {{ram?.cena}} zł</p>
+            <a (click)="addtoChart(ram)" ><img src="assets/images/add.png"/></a>
+          </div>
+
+        </div>
+        <hr>      </div>
+
+    </div>
+  </div>
+</div>

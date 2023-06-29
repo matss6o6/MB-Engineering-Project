@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>Zakupione przedmioty przez Użytkownika:<span style="color:red;">{{data.uzytkownik}}</span></h2><hr>
+<div *ngFor="let item of data.items">
+  <mat-dialog-content class="mat-typography">
+
+    <h4><p style="color:black">Przedmiot: <b>{{item.name}}</b> </p></h4>
+    <p style="color:black">Cena:<b> {{item.price}}</b> zł</p>
+    <p> Ilość: {{item.quantity}} szt. </p>
+    <hr>
+  </mat-dialog-content>
+</div>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close (click)="onNoClick()">Zamknij</button>
+</mat-dialog-actions>
+
+
+

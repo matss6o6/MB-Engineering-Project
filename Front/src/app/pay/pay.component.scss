@@ -1,0 +1,25 @@
+.anim{
+  border-radius:20px;
+  box-sizing: border-box;
+  transition: border 0.5s;
+  text-align:center;
+}
+.anim:hover{
+  border: 2px solid lightslategray;
+}
+a {
+  text-decoration: none;
+}
+@media(max-width: 767px)
+{
+  #navbarNav{
+    vertical-align: center;
+    text-align: center;
+    font-size:30px;
+  }
+  #navbar{
+    vertical-align: center;
+    text-align: center;
+  }
+
+}

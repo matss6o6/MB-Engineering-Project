@@ -1,0 +1,28 @@
+table {
+  width: 100%;
+  border-radius:20px;
+}
+.btn{
+  border-radius:20px;
+}
+.col{
+  border-radius:20px;
+}
+
+.card {
+  font-size:20px
+}
+@media(max-width: 767px)
+{
+  #navbarNav{
+    vertical-align: center;
+    text-align: center;
+    font-size:30px;
+  }
+  #navbar{
+    vertical-align: center;
+    text-align: center;
+  }
+
+}
+

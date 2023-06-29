@@ -1,0 +1,27 @@
+.btn{
+  border-radius:20px;
+}
+input{
+  border-radius:20px;
+}
+
+.col-5{
+  border-radius:20px;
+}
+#lg{
+  text-align: center;
+  font-size:25px
+}
+@media(max-width: 767px)
+{
+  #navbarNav{
+    vertical-align: center;
+    text-align: center;
+    font-size:30px;
+  }
+  #navbar{
+    vertical-align: center;
+    text-align: center;
+  }
+
+}

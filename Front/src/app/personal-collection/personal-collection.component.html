@@ -1,0 +1,60 @@
+<nav class="navbar navbar-dark navbar-expand-md bg-primary">
+  <button
+    type="button"
+    align="center"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarNav"
+    class="navbar-toggler"
+    aria-controls="navbarNav"
+    arian-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse col-sm-justify-content-center" id="navbarNav" >
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link active" routerLink="/home-log-user">Strona główna</a>
+      </li>
+      <li  ngbDropdown class="nav-item dropdown">
+        <a  ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+          Kategorie </a>
+        <div ngbDropdownMenu aria-labelledby="navbarDropdownMenuLink">
+          <a ngbDropdownItem routerLink="/pc-laptop">Komputery/Laptopy></a>
+          <a ngbDropdownItem routerLink="/computer-components">Podzespoły komputerowe></a>
+          <a ngbDropdownItem routerLink="/accessories">Akcesoria></a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " routerLink="/contact-log-user">Kontakt</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " routerLink="/about-log-user">O Nas</a>
+      </li>
+
+    </ul>
+  </div>
+
+  <button type="button " routerLink="/shopcart"  class="btn btn-primary ml-2 active">
+    <img src="/assets/images/shopping_cart2.png" >
+  </button>
+  <button type="button " routerLink="/login" class="btn btn-primary ml-2">
+    <img src="/assets/images/logout.png" > Wyloguj się
+  </button>
+</nav>
+<div class="container">
+  <div class="row mt-5" >
+    <div class="col-12" style="text-align: center">
+      <h1>Dziękujemy za skorzystanie z naszej oferty! </h1>
+      Państwa zadowolenie jest dla nas najważniejsze, dlatego dbamy o szeroki wybór,
+      konkurencyjne ceny oraz jakość naszego asortymentu!<br>
+      Podsumowanie zamówienia znajduje się na Twojej poczcie email podanej w formularzu wysyłania<br>
+      W razie jakichkolwiek niedogodnień bądź problemów z produktem kontaktuj się z nami poprzez  <a routerLink="/contact-log-user"> formularz kontakowy.</a>
+    </div>
+    <button type="button " routerLink="/home-log-user" class="btn btn-primary mt-5">
+      Zakończ
+    </button>
+  </div>
+
+</div>
+

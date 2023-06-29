@@ -1,0 +1,207 @@
+<nav class="navbar navbar-dark navbar-expand-md bg-primary">
+  <button
+    type="button"
+    align="center"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarNav"
+    class="navbar-toggler"
+    aria-controls="navbarNav"
+    arian-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse col-sm-justify-content-center" id="navbarNav" >
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link active" routerLink="/home-log-admin">Strona główna</a>
+      </li>
+
+      <li  ngbDropdown class="nav-item dropdown">
+        <a  ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+          Kategorie </a>
+        <div ngbDropdownMenu aria-labelledby="navbarDropdownMenuLink">
+          <a ngbDropdownItem routerLink="/pc-laptop-admin">Komputery/Laptopy></a>
+          <a ngbDropdownItem routerLink="/computer-components-admin">Podzespoły komputerowe></a>
+          <a ngbDropdownItem routerLink="/accessories-admin">Akcesoria></a>
+        </div>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link"  (click)="onOpenModale(null, 'add')" >Dodaj Komputer <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+
+  </div>
+
+  <form class="form-inline my-2 my-lg-0">
+    <input type="search" (ngModelChange)="searchComputerss(key.value)" #key="ngModel" ngModel
+           name="key" id="searchName" class="form-control mr-sm-2" placeholder="Szukaj komputera/laptopa..." required>
+  </form>
+  <button type="button " routerLink="/userlist" class="btn btn-primary ml-2">
+    <img src="/assets/images/editusers.png" >
+  </button>
+  <button type="button " routerLink="/orders" class="btn btn-primary ml-2">
+    <img src="/assets/images/listorder.png" >
+  </button>
+  <button type="button " routerLink="/login" class="btn btn-primary ml-2">
+    <img src="/assets/images/logout.png" > Wyloguj się
+  </button>
+</nav>
+
+<div class="container" id="main-container">
+  <p style="text-align: center; font-size:25px"><img src="assets/images/iconlappc.png" style="width:5% ; margin-top: 1%"><i><b>  Komputery/Laptopy</b> </i></p><hr>
+  <div class="row row-cols-1 row-cols-md-2">
+    <div *ngFor= "let computers of computerss" class="col col-xl-5">
+
+      <div  class="card m-b-30" class="anim">
+        <div class="card-body row">
+          <div class="col-6" >
+            <img src="{{computers?.img}}" style="width:70%;"><br>
+          </div>
+          <div class="col-6">
+            <p id="prop">Model: <b> {{computers?.model}}</b><br>
+              System: <b>{{computers?.system}}</b><br>
+              Procesor: <b>{{computers?.procesor}}</b><br>
+              Grafika: <b>{{computers?.kgraficzna}}</b><br>
+              Pamięć RAM: <b> {{computers?.pamRam}} </b></p>
+            <p style=" text-align:right; font-size:20px">{{computers?.cena}} zł</p>
+            <a (click)="onOpenModal(computers, 'edit')" class="table-link text-info">
+                                                <span class="fa-stack">
+                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                            </span></a>
+            <a (click)="onOpenModal(computers, 'delete')"class="table-link danger">
+                                                <span class="fa-stack">
+                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                                            </span></a>
+          </div>
+
+
+        </div>
+        <hr>      </div>
+
+
+    </div>
+  </div>
+
+</div>
+
+<!-- Add Computers Modal -->
+<div class="modal fade" id="addComputersModal" tabindex="-1" role="dialog" aria-labelledby="addComputersModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addComputersModalLabel">Dodaj Komputer</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #addForm="ngForm" (ngSubmit)="onAddComputers(addForm)">
+          <div class="form-group">
+            <label for="model">Model</label>
+            <input type="text" ngModel name="model" class="form-control" id="modelA" placeholder="Model" required>
+          </div>
+          <div class="form-group">
+            <label for="system">System</label>
+            <input type="text" ngModel name="system" class="form-control" id="systemA" placeholder="System" required>
+          </div>
+          <div class="form-group">
+            <label for="procesor">Procesor</label>
+            <input type="text" ngModel name="procesor" class="form-control" id="procesorA" placeholder="Procesor" required>
+          </div>
+          <div class="form-group">
+            <label for="kGraficzna">Karta graficzna</label>
+            <input type="text" ngModel name="kGraficzna" class="form-control" id="kGraficznaA" placeholder="Karta graficzna" required>
+          </div>
+          <div class="form-group">
+            <label for="pamRam">Pamiec ram</label>
+            <input type="text" ngModel name="pamRam" class="form-control" id="pamRamA" placeholder="Pamiec ram" required>
+          </div>
+          <div class="form-group">
+            <label for="cena">Cena</label>
+            <input type="text" ngModel name="cena" class="form-control" id="cenaA" placeholder="Cena" required>
+          </div>
+          <div class="form-group">
+            <label for="img">Image URL</label>
+            <input type="text" ngModel name="img" class="form-control" id="imgA" placeholder="Image URL" required>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="add-computers-form" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+            <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Zapisz zmiany</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="updateComputersModal" tabindex="-1" role="dialog" aria-labelledby="updateComputersModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateComputersModalLabel"><H1>Edytuj Komputer</H1> {{editComputers?.model}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #editForm="ngForm">
+          <div class="form-group">
+            <label for="model">Model</label>
+            <input type="text" ngModel="{{editComputers?.model}}" name="model" class="form-control" id="model" aria-describedby="modelHelp" placeholder="Model">
+          </div>
+          <input type="hidden" ngModel="{{editComputers?.idKomputera}}" name="idKomputera" class="form-control" id="idKomputera" placeholder="idKomputera">
+          <input type="hidden" ngModel="{{editComputers?.img}}" name="img" class="form-control" id="img" placeholder="img">
+          <div class="form-group">
+            <label for="system">System</label>
+            <input type="text" ngModel="{{editComputers?.system}}" name="system" class="form-control" id="system" placeholder="System">
+          </div>
+          <div class="form-group">
+            <label for="procesor">Procesor</label>
+            <input type="text" ngModel="{{editComputers?.procesor}}" name="procesor" class="form-control" id="procesor" placeholder="Procesor">
+          </div>
+          <div class="form-group">
+            <label for="kGraficzna">Karta graficzna</label>
+            <input type="text" ngModel="{{editComputers?.kgraficzna}}" name="kGraficzna" class="form-control" id="kGraficzna" placeholder="Karta graficzna">
+          </div>
+          <div class="form-group">
+            <label for="pamRam">Pamiec ram</label>
+            <input type="text" ngModel="{{editComputers?.pamRam}}" name="pamRam" class="form-control" id="pamRam" placeholder="Pamiec ram">
+          </div>
+          <div class="form-group">
+            <label for="cena">Cena</label>
+            <input type="text" ngModel="{{editComputers?.cena}}" name="cena" class="form-control" id="cena" placeholder="Cena">
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Anuluj</button>
+            <button (click)="onUpdateComputers(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Zapisz zmiany</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteComputersModal" tabindex="-1" role="dialog" aria-labelledby="deleteComputersModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteComputersModalLabel">Usuń Komputer</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Czy jesteś pewny , że chcesz usunąć komputer {{deleteComputers?.model}}?</p>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
+          <button (click)="onDeleteComputers(deleteComputers.idKomputera)" class="btn btn-danger" data-dismiss="modal">Tak</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

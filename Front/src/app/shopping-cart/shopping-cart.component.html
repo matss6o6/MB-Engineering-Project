@@ -1,0 +1,110 @@
+<nav class="navbar navbar-dark navbar-expand-md bg-primary">
+  <button
+    type="button"
+    align="center"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarNav"
+    class="navbar-toggler"
+    aria-controls="navbarNav"
+    arian-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse col-sm-justify-content-center" id="navbarNav" >
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link active" routerLink="/home-log-user">Strona główna</a>
+      </li>
+      <li  ngbDropdown class="nav-item dropdown">
+        <a  ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+          Kategorie </a>
+        <div ngbDropdownMenu aria-labelledby="navbarDropdownMenuLink">
+          <a ngbDropdownItem routerLink="/pc-laptop">Komputery/Laptopy></a>
+          <a ngbDropdownItem routerLink="/computer-components">Podzespoły komputerowe></a>
+          <a ngbDropdownItem routerLink="/accessories">Akcesoria></a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " routerLink="/contact-log-user">Kontakt</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " routerLink="/about-log-user">O Nas</a>
+      </li>
+
+    </ul>
+  </div>
+
+  <button type="button " routerLink="/shopcart"  class="btn btn-primary ml-2 active">
+    <img src="/assets/images/shopping_cart2.png" >
+  </button>
+  <button type="button " routerLink="/login" class="btn btn-primary ml-2">
+    <img src="/assets/images/logout.png" > Wyloguj się
+  </button>
+</nav>
+<div class="container-fluid">
+  <div class="row row-col-1 row-cols-md-2">
+    <div class="col">
+      <div class="container-fluid">
+        <div class="row row-cols-1">
+          <div class="table-responsive mt-5">
+            <table class="table project-list-table table-nowrap align-middle table-borderless">
+              <thead>
+              <tr>
+                <th scope="col" style="width: 100px;">
+                </th>
+                <th scope="col">Nazwa produktu</th>
+                <th scope="col">Cena</th>
+                <th scope="col">Ilość sztuk</th>
+                <th scope="col">Usuń z koszyka</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let item of shoppingCart">
+                <td></td>
+                <td>{{item.name}}</td>
+                <td>{{item.price*item.quantity}} zł.</td>
+                <td>{{item.quantity}} szt.</td>
+                <td><button class="btn btn-outline-danger btn-sm btn-block mb-2" type="button" (click)="removeFromCart(item.id)">
+                  Usuń</button></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          </div>
+      </div>
+      </div>
+    <div class="col-md-6">
+      <div class="card position-sticky mt-5">
+        <div class="p-3 bg-light bg-opacity-10">
+          <h2 class="card-title mb-3">Podsumowanie zamówienia</h2>
+          <div class="d-flex justify-content-between mb-1 small">
+            <span>Suma za zakupy</span> <span>{{sum()}} zł</span>
+          </div>
+          <div class="d-flex justify-content-between mb-1 small">
+            <span>Wysyłka</span> <span><s>20 zł</s> 0 zł</span>
+          </div>
+          <hr>
+          <div class="d-flex justify-content-between mb-4 small">
+            <span>Całkowity koszt</span> <strong class="text-dark">{{sum()}} zł</strong>
+          </div>
+          <div class="form-check mb-1 small">
+            <input class="form-check-input" type="checkbox" value="" id="tnc" checked>
+            <label class="form-check-label" for="tnc">
+              Zgadzam się z  <a href= "assets/regulamin.pdf" target="_blank">regulaminem</a>*
+            </label>
+          </div>
+          <div class="form-check mb-3 small">
+            <input class="form-check-input" type="checkbox" value="" id="subscribe" checked>
+            <label class="form-check-label" for="subscribe">
+              Zapoznałem się z <a href= "assets/polityka.pdf" target="_blank">Polityką prywatności</a> i ją akceptuje
+            </label>
+          </div>
+          <button (click)="goToRealization()" class="btn btn-primary w-100 mt-2" [disabled]="shoppingCart.length===0">Przejdź do realizacji</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,208 @@
+<nav class="navbar navbar-dark navbar-expand-md bg-primary">
+  <button
+    type="button"
+    align="center"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarNav"
+    class="navbar-toggler"
+    aria-controls="navbarNav"
+    arian-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse col-sm-justify-content-center" id="navbarNav" >
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link active" routerLink="/home-log-admin">Strona główna</a>
+      </li>
+      <li  ngbDropdown class="nav-item dropdown">
+        <a  ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+          Kategorie </a>
+        <div ngbDropdownMenu aria-labelledby="navbarDropdownMenuLink">
+          <a ngbDropdownItem routerLink="/pc-laptop-admin">Komputery/Laptopy></a>
+          <a ngbDropdownItem routerLink="/computer-components-admin">Podzespoły komputerowe></a>
+          <a ngbDropdownItem routerLink="/accessories-admin">Akcesoria></a>
+        </div>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link"  (click)="onOpenModale(null, 'add')" >Dodaj Dysk <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+
+  </div>
+
+  <form class="form-inline my-2 my-lg-0">
+    <input type="search" (ngModelChange)="searchDiscs(key.value)" #key="ngModel" ngModel
+           name="key" id="searchName" class="form-control mr-sm-2" placeholder="Szukaj dysku..." required>
+  </form>
+  <button type="button " routerLink="/userlist" class="btn btn-primary ml-2">
+    <img src="/assets/images/editusers.png" >
+  </button>
+  <button type="button " routerLink="/orders" class="btn btn-primary ml-2">
+    <img src="/assets/images/listorder.png" >
+  </button>
+  <button type="button " routerLink="/login" class="btn btn-primary ml-2">
+    <img src="/assets/images/logout.png" > Wyloguj się
+  </button>
+</nav>
+
+<div class="container" id="main-container">
+  <p style="text-align: center; font-size:25px"><img src="assets/images/icondisk.png" style="width:5%; margin-top: 1%"><i><b>Dyski Twarde</b> </i></p><hr>
+  <div class="row row-cols-1 row-cols-md-2">
+    <div *ngFor= "let disc of discs" class="col col-xl-5">
+
+      <div class="card m-b-30" class="anim">
+        <div class="card-body row">
+          <div class="col" >
+            <img src="{{disc?.img}}" style="width:70%;"><br>
+          </div>
+          <div class="col">
+            <p id="prop">Model: <b> {{disc?.model}}</b><br>
+              Pojemność: <b>{{disc?.pojemnosc}}</b><br>
+              Interfejs: <b>{{disc?.interfejs}}</b><br>
+              Prędkość odczytu: <b>{{disc?.podczytu}}</b><br>
+              Prędkość zapisu: <b> {{disc?.pzapisu}} </b></p>
+            <p style="text-align:right; font-size:20px">{{disc?.cena}} zł</p>
+            <a (click)="onOpenModal(disc, 'edit')" class="table-link text-info">
+              <span class="fa-stack">
+                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                            </span>
+            </a>
+            <a (click)="onOpenModal(disc, 'delete')" class="table-link danger">
+                                            <span class="fa-stack">
+                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                                            </span>
+            </a>
+          </div>
+
+        </div>
+        <hr>      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- Add Disc Modal -->
+<div class="modal fade" id="addDiscModal" tabindex="-1" role="dialog" aria-labelledby="addDiscModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addDiscModalLabel">Dodaj Dysk</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #addForm="ngForm" (ngSubmit)="onAddDisc(addForm)">
+          <div class="form-group">
+            <label for="model">Model</label>
+            <input type="text" ngModel name="model" class="form-control" id="modelA" placeholder="Model" required>
+          </div>
+          <div class="form-group">
+            <label for="pojemnosc">Pojemnosc</label>
+            <input type="text" ngModel name="pojemnosc" class="form-control" id="pojemnoscA" placeholder="Pojemnosc" required>
+          </div>
+          <div class="form-group">
+            <label for="interfejs">Interfejs</label>
+            <input type="text" ngModel name="interfejs" class="form-control" id="interfejsA" placeholder="Interfejs" required>
+          </div>
+          <div class="form-group">
+            <label for="pOdczytu">Pamiec odczytu</label>
+            <input type="text" ngModel name="pOdczytu" class="form-control" id="pOdczytuA" placeholder="Pamiec odczytu" required>
+          </div>
+
+          <div class="form-group">
+            <label for="pZapisu">Pamiec zapisu</label>
+            <input type="text" ngModel name="pZapisu" class="form-control" id="pZapisuA" placeholder="Pamiec zapisu" required>
+          </div>
+          <div class="form-group">
+            <label for="cena">Cena</label>
+            <input type="text" ngModel name="cena" class="form-control" id="cenaA" placeholder="Cena" required>
+          </div>
+          <div class="form-group">
+            <label for="img">Image URL</label>
+            <input type="text" ngModel name="img" class="form-control" id="imgA" placeholder="Image URL" required>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="add-disc-form" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+            <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Zapisz zmiany</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Disc Modal -->
+<div class="modal fade" id="updateDiscModal" tabindex="-1" role="dialog" aria-labelledby="updateDiscModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateDiscModalLabel"><H1>Edytuj Dysk</H1> {{editDisc?.model}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #editForm="ngForm">
+          <div class="form-group">
+            <label for="model">Model</label>
+            <input type="text" ngModel="{{editDisc?.model}}" name="model" class="form-control" id="model" aria-describedby="modelHelp" placeholder="Model">
+          </div>
+          <input type="hidden" ngModel="{{editDisc?.idTwarde}}" name="idTwarde" class="form-control" id="idTwarde" placeholder="idTwarde">
+          <input type="hidden" ngModel="{{editDisc?.img}}" name="img" class="form-control" id="img" placeholder="img">
+          <div class="form-group">
+            <label for="pojemnosc">Pojemnosc</label>
+            <input type="text" ngModel="{{editDisc?.pojemnosc}}" name="pojemnosc" class="form-control" id="pojemnosc" placeholder="Pojemnosc">
+          </div>
+          <div class="form-group">
+            <label for="interfejs">Interfejs</label>
+            <input type="text" ngModel="{{editDisc?.interfejs}}" name="interfejs" class="form-control" id="interfejs" placeholder="Interfejs">
+          </div>
+          <div class="form-group">
+            <label for="pOdczytu">Pamiec odczytu</label>
+            <input type="text" ngModel="{{editDisc?.podczytu}}" name="pOdczytu" class="form-control" id="pOdczytu" name="pOdczytu" placeholder="Pamiec odczytu">
+          </div>
+          <div class="form-group">
+            <label for="pZapisu">Pamiec zapisu</label>
+            <input type="text" ngModel="{{editDisc?.pzapisu}}" name="pZapisu" class="form-control" id="pZapisu" name="pZapisu" placeholder="Pamiec zapisu">
+          </div>
+          <div class="form-group">
+            <label for="cena">Cena</label>
+            <input type="text" ngModel="{{editDisc?.cena}}" name="cena" class="form-control" id="cena" name="cena" placeholder="Cena">
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Anuluj</button>
+            <button (click)="onUpdateDisc(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Zapisz zmiany</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Disc Modal -->
+<div class="modal fade" id="deleteDiscModal" tabindex="-1" role="dialog" aria-labelledby="deleteDiscModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteDiscModalLabel">Usuń Dysk</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Czy jesteś pewny , że chcesz usunąć dysk {{deleteDisc?.model}}?</p>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Nie</button>
+          <button (click)="onDeleteDisc(deleteDisc.idTwarde)" class="btn btn-danger" data-dismiss="modal">Tak</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

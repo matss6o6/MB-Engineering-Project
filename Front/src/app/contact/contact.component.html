@@ -1,0 +1,81 @@
+<nav class="navbar navbar-dark navbar-expand-md bg-primary">
+  <button
+    type="button"
+    align="center"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarNav"
+    class="navbar-toggler"
+    aria-controls="navbarNav"
+    arian-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse col-sm-justify-content-center" id="navbarNav" >
+
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/home">Strona główna</a>
+      </li>
+      <li class="nav-item dropdown" aria-labelledby="navbarDropdownMenuLink">
+        <a class="nav-link dropdown-toggle disabled" data-toggle="dropdown" >Kategorie
+          <span class="caret"></span></a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item"> Komputery/Laptopy></a>
+          <a class="dropdown-item"> Podzespoły komputerowe></a>
+          <a class="dropdown-item"> Akcesoria></a>
+        </div>
+      </li>
+      <li class="nav-item col-md-justify-content-center">
+        <a class="nav-link active" routerLink="/contact">Kontakt</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " routerLink="/about">O Nas</a>
+      </li>
+
+    </ul>
+
+  </div>
+
+
+  <button type="button mr-2" routerLink="/login" class="btn btn-primary px-3 me-2 order-md-last order-first">
+    <img src="/assets/images/login.png" >Zaloguj się
+  </button>
+
+
+</nav>
+<div class="container">
+  <div class="row">
+    <p class="h4 mb-4">
+      <img src="https://img.icons8.com/ios/50/000000/new-message.png" alt="message"/> Masz pytania? Będziemy szczęśliwi, mogąc Ci pomóc</p>
+  </div>
+  <div id="stopka">
+
+    <div class="form-floating mb-3 mt-6">
+      <input  [(ngModel)]="descInput" type="text" class="form-control" id="floatingInputname" placeholder="Jan Kowalski">
+      <label for="floatingInputname">Imię i nazwisko</label>
+    </div>
+
+    <div class="form-floating mb-3 mt-6">
+      <input [(ngModel)]="descInput1" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <label for="floatingInput"  placeholder="Wiadomość">E-mail</label>
+    </div>
+    <div class="form-floating">
+    <select  [(ngModel)]="descInput2" id="floatingSelect" name="descInput3" class="form-select mb-4"  >
+      <option value="" disabled selected>wybierz interesującą sekcję</option>
+      <option value="Zwroty/Reklamacje">Zwroty/Reklamacje</option>
+      <option value="Pomoc Techniczna">Pomoc Techniczna</option>
+      <option value="Serwisanci">Serwisanci</option>
+      <option value="Kadra rekrutacyjna">Kadra rekrutacyjna</option>
+    </select>
+    <label for="floatingSelect">Wybierz interesującą sekcję</label>
+  </div>
+    <div class="form-group">
+      <textarea class="form-control"  rows="7" placeholder="Wiadomość" [(ngModel)]="descInput3"></textarea>
+    </div>
+
+    <div class="d-grid gap-1">
+      <button class="btn btn-primary" type="button" (click)="getUserInput()">Wyślij</button>
+    </div>
+  </div>
+</div>
